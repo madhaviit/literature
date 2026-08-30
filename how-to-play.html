@@ -1,0 +1,578 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta
+      name="description"
+      content="How to play Literature (Canadian Fish): the 48-card, 6-player team card game. Rules, claiming, and how to read the table."
+    />
+    <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+    <title>How to Play Literature</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Libre+Franklin:ital,wght@0,400;0,500;0,600;1,400&family=Source+Serif+4:ital,opsz,wght@0,8..60,500;0,8..60,600;0,8..60,700;1,8..60,500&display=swap"
+      rel="stylesheet"
+    />
+    <meta name="theme-color" content="#0c1210" />
+    <style>
+      :root {
+        --bg: #0c1210;
+        --ink: #eeeae2;
+        --muted: #9a9488;
+        --rule: #5a564c;
+        --red: #c41e3a;
+        --cream: #eeeae2;
+        --dark: #141210;
+        --card: #fffdf8;
+        --max: 78rem;
+      }
+
+      * { box-sizing: border-box; }
+
+      html {
+        scroll-behavior: smooth;
+        scroll-padding-top: 4.5rem;
+        color-scheme: dark;
+        background: var(--bg);
+      }
+
+      body {
+        margin: 0;
+        background:
+          radial-gradient(circle at 50% -8%, rgb(16 95 80 / 32%), transparent 34rem),
+          var(--bg);
+        color: var(--ink);
+        font-family: 'Libre Franklin', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+        font-size: 1.05rem;
+        line-height: 1.55;
+        -webkit-font-smoothing: antialiased;
+      }
+
+      ::selection {
+        background: #d4cfc3;
+        color: var(--bg);
+      }
+
+      :focus-visible {
+        outline: 2px solid #d4cfc3;
+        outline-offset: 3px;
+      }
+
+      a { color: inherit; }
+
+      header {
+        position: sticky;
+        top: 0;
+        z-index: 20;
+        background: var(--bg);
+        border-bottom: 1px solid var(--rule);
+      }
+
+      .mast {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1rem;
+        max-width: var(--max);
+        margin: 0 auto;
+        padding: 0.65rem 1.15rem;
+      }
+
+      .wordmark {
+        font-family: 'Source Serif 4', Georgia, serif;
+        font-size: 1.2rem;
+        font-weight: 600;
+        letter-spacing: -0.02em;
+        text-decoration: none;
+      }
+
+      .play {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.35rem;
+        padding: 0.42rem 0.85rem;
+        background: var(--cream);
+        color: var(--dark);
+        font-size: 0.88rem;
+        font-weight: 600;
+        text-decoration: none;
+      }
+
+      .play:hover { background: #fff; }
+
+      .wrap {
+        max-width: var(--max);
+        margin: 0 auto;
+        padding: 1.15rem 1.15rem 3.25rem;
+      }
+
+      .hero {
+        display: grid;
+        gap: 0.85rem 2.5rem;
+        margin-bottom: 1.15rem;
+      }
+
+      h1 {
+        margin: 0;
+        font-family: 'Source Serif 4', Georgia, serif;
+        font-size: clamp(2.2rem, 5.5vw, 3.5rem);
+        font-weight: 600;
+        letter-spacing: -0.03em;
+        line-height: 1.05;
+      }
+
+      .deck {
+        margin: 0;
+        font-size: 1.08rem;
+        line-height: 1.5;
+        color: var(--muted);
+      }
+
+      .jump {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 0.15rem 1.25rem;
+        margin: 0 0 1.6rem;
+        padding: 0.2rem 0 1rem;
+        border-bottom: 1px solid var(--rule);
+      }
+
+      .jump a {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 0.4rem;
+        min-height: 2.2rem;
+        color: var(--ink);
+        font-size: 0.9rem;
+        font-weight: 600;
+        text-decoration: none;
+      }
+
+      .jump a::after { content: none; }
+      .jump a:hover { text-decoration: underline; text-underline-offset: 0.18em; }
+
+      .rail { display: none; }
+
+      h2 {
+        margin: 0 0 0.6rem;
+        font-family: 'Source Serif 4', Georgia, serif;
+        font-size: clamp(1.4rem, 2.6vw, 1.8rem);
+        font-weight: 600;
+        letter-spacing: -0.025em;
+      }
+
+      h3 {
+        margin: 1.1rem 0 0.4rem;
+        font-size: 0.82rem;
+        font-weight: 700;
+      }
+
+      p { margin: 0 0 0.7rem; }
+      p:last-child { margin-bottom: 0; }
+
+      ul, ol {
+        margin: 0 0 0.85rem;
+        padding-left: 1.2rem;
+      }
+
+      li { margin: 0.28rem 0; }
+      li::marker { color: var(--muted); }
+
+      .sets {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 0.15rem 2rem;
+        margin: 0.75rem 0 0.9rem;
+        padding-left: 1.2rem;
+      }
+
+      .note {
+        margin: 0.85rem 0 0;
+        color: var(--muted);
+        font-style: italic;
+      }
+
+      .note b {
+        font-style: normal;
+        color: var(--cream);
+      }
+
+      section { margin: 0 0 1.85rem; }
+
+      .pcard {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-width: 1.45rem;
+        height: 1.7rem;
+        margin: 0 0.08rem 0.08rem 0;
+        padding: 0 0.18rem;
+        background: var(--card);
+        color: var(--dark);
+        font-size: 0.68rem;
+        font-weight: 700;
+        box-shadow: 0 0 0 1px rgb(238 234 226 / 35%);
+      }
+
+      .pcard.red { color: var(--red); }
+      .suit-red { color: var(--red); }
+
+      .strat {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 1.25rem 1.75rem;
+      }
+
+      .strat > div {
+        padding: 0;
+      }
+
+      .strat h3 { margin: 0 0 0.45rem; font-size: 1rem; }
+
+      .dl {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 0;
+        margin: 0;
+      }
+
+      .dl div {
+        display: grid;
+        grid-template-columns: 7rem 1fr;
+        gap: 0.35rem 0.75rem;
+        margin: 0;
+        padding: 0.55rem 0;
+        border-bottom: 1px solid var(--rule);
+        font-size: 0.92rem;
+      }
+
+      .dl dt { margin: 0; font-weight: 700; }
+      .dl dd { margin: 0; }
+
+      kbd { font-family: inherit; font-weight: 700; }
+
+      footer {
+        max-width: var(--max);
+        margin: 0 auto;
+        padding: 0 1.15rem 2.4rem;
+        color: var(--muted);
+        font-size: 0.85rem;
+      }
+
+      footer p { margin: 0.9rem 0 0; }
+      footer a { font-weight: 600; }
+
+      @media (min-width: 560px) {
+        .jump { grid-template-columns: repeat(5, minmax(0, 1fr)); }
+        .sets { grid-template-columns: 1fr 1fr; }
+        .dl { grid-template-columns: 1fr 1fr; }
+      }
+
+      @media (min-width: 880px) {
+        .hero { grid-template-columns: 0.9fr 1.1fr; align-items: end; }
+        .jump { display: none; }
+        .board {
+          display: grid;
+          grid-template-columns: 12rem minmax(0, 1fr);
+          gap: 1.75rem 2.5rem;
+          align-items: start;
+        }
+        .rail {
+          display: flex;
+          position: sticky;
+          top: 4.4rem;
+          flex-direction: column;
+          gap: 0;
+        }
+        .rail a {
+          padding: 0.4rem 0;
+          font-size: 0.9rem;
+          font-weight: 500;
+          text-decoration: none;
+          border-bottom: 1px solid var(--rule);
+        }
+        .rail a:hover { text-decoration: underline; text-underline-offset: 0.18em; }
+        .strat { grid-template-columns: 1fr 1fr 1fr; }
+        .dl { grid-template-columns: 1fr 1fr 1fr; }
+      }
+
+      @media (min-width: 880px) and (orientation: portrait) {
+        .strat { grid-template-columns: 1fr 1fr; }
+        .dl { grid-template-columns: 1fr 1fr; }
+      }
+
+    </style>
+  </head>
+  <body id="top">
+    <header>
+      <div class="mast">
+        <a class="wordmark" href="./">Literature</a>
+        <a class="play" href="./">Play <span aria-hidden="true">→</span></a>
+      </div>
+    </header>
+
+    <div class="wrap">
+      <div class="hero">
+        <h1>How to play</h1>
+        <p class="deck">
+          Literature — Canadian Fish, or just Fish — is questions, memory, and deduction.
+          The move is simple: ask an opponent for one exact card. The game is everything
+          you hear, remember, and infer from that.
+        </p>
+      </div>
+
+      <nav class="jump" aria-label="On this page">
+        <a href="#goal">Goal</a>
+        <a href="#cards">Cards</a>
+        <a href="#teams">Teams</a>
+        <a href="#turn">Turn</a>
+        <a href="#claiming">Claim</a>
+        <a href="#winning">Win</a>
+        <a href="#info">Table</a>
+        <a href="#strategy">Strategy</a>
+        <a href="#cheatsheet">Sheet</a>
+        <a href="#app">App</a>
+      </nav>
+
+      <div class="board">
+        <nav class="rail" aria-label="Sections">
+          <a href="#goal">Goal</a>
+          <a href="#cards">Cards</a>
+          <a href="#teams">Teams</a>
+          <a href="#turn">Your turn</a>
+          <a href="#claiming">Claiming</a>
+          <a href="#winning">Winning</a>
+          <a href="#info">The table</a>
+          <a href="#strategy">Strategy</a>
+          <a href="#cheatsheet">Cheat sheet</a>
+          <a href="#app">This app</a>
+        </nav>
+
+        <div class="main">
+          <section id="goal">
+            <h2>The goal</h2>
+            <p>
+              You and two teammates collect complete <strong>sets</strong> — also called
+              half-suits or books. Eight sets are in play. Capture more than the other
+              team and you win.
+            </p>
+            <p>
+              You never win a set alone. Cards keep moving, so a set belongs to the
+              <strong>team</strong> once all six sit on your side — in one hand or
+              spread across partners. The trick is knowing when that’s true.
+            </p>
+            <p class="note">
+              Unlike Go Fish, you only ask opponents, never teammates. Watch every
+              question. Memory and inference are the game.
+            </p>
+          </section>
+
+          <section id="cards">
+            <h2>The eight sets</h2>
+            <p>
+              Strip the four 8s from a 52-card deck. Forty-eight left. Each suit splits
+              in two: <strong>low</strong> 2–7 and <strong>high</strong> 9–A. The 8 is gone,
+              so the halves never meet.
+            </p>
+            <ul class="sets">
+              <li><strong>♠ low</strong> — <span class="pcard">2♠</span><span class="pcard">3♠</span><span class="pcard">4♠</span><span class="pcard">5♠</span><span class="pcard">6♠</span><span class="pcard">7♠</span></li>
+              <li><strong>♠ high</strong> — <span class="pcard">9♠</span><span class="pcard">10♠</span><span class="pcard">J♠</span><span class="pcard">Q♠</span><span class="pcard">K♠</span><span class="pcard">A♠</span></li>
+              <li><strong class="suit-red">♥ low</strong> — <span class="pcard red">2♥</span><span class="pcard red">3♥</span><span class="pcard red">4♥</span><span class="pcard red">5♥</span><span class="pcard red">6♥</span><span class="pcard red">7♥</span></li>
+              <li><strong class="suit-red">♥ high</strong> — <span class="pcard red">9♥</span><span class="pcard red">10♥</span><span class="pcard red">J♥</span><span class="pcard red">Q♥</span><span class="pcard red">K♥</span><span class="pcard red">A♥</span></li>
+              <li><strong class="suit-red">♦ low</strong> — <span class="pcard red">2♦</span><span class="pcard red">3♦</span><span class="pcard red">4♦</span><span class="pcard red">5♦</span><span class="pcard red">6♦</span><span class="pcard red">7♦</span></li>
+              <li><strong class="suit-red">♦ high</strong> — <span class="pcard red">9♦</span><span class="pcard red">10♦</span><span class="pcard red">J♦</span><span class="pcard red">Q♦</span><span class="pcard red">K♦</span><span class="pcard red">A♦</span></li>
+              <li><strong>♣ low</strong> — <span class="pcard">2♣</span><span class="pcard">3♣</span><span class="pcard">4♣</span><span class="pcard">5♣</span><span class="pcard">6♣</span><span class="pcard">7♣</span></li>
+              <li><strong>♣ high</strong> — <span class="pcard">9♣</span><span class="pcard">10♣</span><span class="pcard">J♣</span><span class="pcard">Q♣</span><span class="pcard">K♣</span><span class="pcard">A♣</span></li>
+            </ul>
+            <p>Each player is dealt 8 cards. Never show your hand — not even to partners.</p>
+          </section>
+
+          <section id="teams">
+            <h2>Teams and seating</h2>
+            <p>
+              Two teams of three, sitting alternately: A1 — B1 — A2 — B2 — A3 — B3
+              (and B3 sits next to A1). Everyone sits between two opponents. The host
+              can keep that split, randomize it, or move people; both sides stay three-and-three.
+            </p>
+            <p class="note">
+              You cannot plan out loud or show cards. All communication is the questions
+              you ask, and the ones you skip. Keep voice chat for banter, not strategy.
+            </p>
+          </section>
+
+          <section id="turn">
+            <h2>Your turn</h2>
+            <p>
+              Ask one opponent for one exact card. A question is legal only if all four
+              of these are true:
+            </p>
+            <ol>
+              <li><strong>Be specific.</strong> “The 7 of Spades,” never “a spade.”</li>
+              <li><strong>Hold that set.</strong> A high-spade ask needs a high spade in your hand.</li>
+              <li><strong>Ask for a hole.</strong> You cannot name a card you already hold.</li>
+              <li><strong>Ask an opponent</strong> who still has cards — never a teammate.</li>
+            </ol>
+
+            <h3>Example</h3>
+            <p>
+              Your only spade is the <span class="pcard">Q♠</span>. You may ask for the
+              <span class="pcard">9♠</span>
+              <span class="pcard">10♠</span>
+              <span class="pcard">J♠</span>
+              <span class="pcard">K♠</span>
+              or
+              <span class="pcard">A♠</span>
+              — not the Queen, and not any low spade.
+            </p>
+
+            <h3>What happens next</h3>
+            <ul>
+              <li>
+                <strong>Hit.</strong> They pass it face-up. You add it to your hand and
+                ask again — anyone, any legal card — until you miss.
+              </li>
+              <li>
+                <strong>Miss.</strong> The turn becomes theirs. The table still learned
+                that you hold that set, just not that card, and that they didn’t have it.
+              </li>
+            </ul>
+          </section>
+
+          <section id="claiming">
+            <h2>Claiming a set</h2>
+            <p>
+              When your team has all six, claim on your turn. Hold them all:
+              <strong>lay down</strong>. Spread across partners: <strong>assign</strong>
+              who has which. Then one of three things happens:
+            </p>
+            <ul>
+              <li><strong>Correct.</strong> Your team keeps the set. Those cards leave play.</li>
+              <li><strong>Wrong split.</strong> You had them all, but named the wrong hands. The set is dead. Nobody scores.</li>
+              <li><strong>They held one.</strong> The set goes to the other team.</li>
+            </ul>
+            <p>
+              Everyone sees the result. The six cards are shown, then stacked with the
+              team that scored — or thrown in if the set died. That’s public, like the
+              score. (You still may not write anything down.)
+            </p>
+            <p>
+              Example: you hold 2, 3, 4, 6, 7♥. Doug earlier asked for 3♥, so he holds a
+              low heart — the 5. You say: “Claim low hearts — Doug has the 5, I have the
+              rest.” Correct: you score.
+            </p>
+            <p class="note">
+              A claim is a commitment: name the full layout. You keep the turn after.
+              If it emptied your hand, pass to a teammate with cards.
+            </p>
+          </section>
+
+          <section id="winning">
+            <h2>Ending and winning</h2>
+            <p>
+              The game ends when all 8 sets are claimed or forfeited. Most sets wins.
+              Five or more is a lock. 4–4 is a tie. A dead set belongs to no one, so
+              4–3 happens.
+            </p>
+            <p>
+              Empty hands can’t be asked. Claim yourself empty: choose a teammate with
+              cards. When a whole team is out, the other team must claim what’s left —
+              no more questions. Track who is empty as hard as who holds what.
+            </p>
+          </section>
+
+          <section id="info">
+            <h2>Reading the table</h2>
+            <ul>
+              <li>Anyone may ask what the last question and answer were. Older history stays in your head.</li>
+              <li>Anyone may ask how many cards a player holds. Answer truthfully.</li>
+              <li>Claimed sets are public: which team scored them, and which were forfeited.</li>
+              <li>No notes, apps, or counters. Brain only.</li>
+            </ul>
+            <p class="note">
+              “A asked for 9♥” means A holds a high heart, not the 9. If it hits B, A now
+              has the 9 and B is lighter. Stack those facts.
+            </p>
+          </section>
+
+          <section id="strategy">
+            <h2>Strategy</h2>
+            <div class="strat">
+              <div>
+                <h3>From game one</h3>
+                <ul>
+                  <li><strong>Track every question.</strong> Who, what, yes or no.</li>
+                  <li><strong>Drop dead sets.</strong> If you can’t ask in it, forget it.</li>
+                  <li><strong>Don’t claim on a hunch.</strong> Sure, then prompt.</li>
+                </ul>
+              </div>
+              <div>
+                <h3>Next</h3>
+                <ul>
+                  <li><strong>Safe sets can’t be stolen.</strong> Lock other sets first.</li>
+                  <li><strong>Ask to inform.</strong> A miss can tell partners you hold that set.</li>
+                  <li><strong>Exhaust one rank</strong> across the table, then chase a void.</li>
+                </ul>
+              </div>
+              <div>
+                <h3>What veterans still miss</h3>
+                <ul>
+                  <li><strong>Starve a dangerous opponent</strong> of turns. A miss hands them the ask.</li>
+                  <li><strong>Skip the tug-of-war.</strong> Trading one card leaks the whole table.</li>
+                  <li><strong>Partner signal:</strong> they miss 2♥ → you hold it, ask a different low heart; you lack it, repeat 2♥; you’re void, switch sets.</li>
+                </ul>
+              </div>
+            </div>
+          </section>
+
+          <section id="cheatsheet">
+            <h2>Cheat sheet</h2>
+            <dl class="dl">
+              <div><dt>Goal</dt><dd>Most of 8 sets.</dd></div>
+              <div><dt>A set</dt><dd>Six cards: low 2–7 or high 9–A of a suit.</dd></div>
+              <div><dt>To ask</dt><dd>Exact card you lack, set you hold, opponent with cards.</dd></div>
+              <div><dt>Hit</dt><dd>Take it → go again.</dd></div>
+              <div><dt>Miss</dt><dd>Turn → the player you asked.</dd></div>
+              <div><dt>Never</dt><dd>Teammates, or a card you hold.</dd></div>
+              <div><dt>Claim</dt><dd>Lay down, or assign every card.</dd></div>
+              <div><dt>After</dt><dd>Keep the turn; empty hand → a teammate.</dd></div>
+              <div><dt>Wrong split</dt><dd>Set dies.</dd></div>
+              <div><dt>They held one</dt><dd>They score it.</dd></div>
+              <div><dt>Win</dt><dd>Most sets when all 8 resolve.</dd></div>
+              <div><dt>Allowed</dt><dd>Last Q&amp;A, anyone’s count.</dd></div>
+            </dl>
+          </section>
+
+          <section id="app">
+            <h2>In this app</h2>
+            <dl class="dl">
+              <div><dt>Your turn</dt><dd><kbd>Ask</kbd> and <kbd>Claim</kbd> show at the bottom.</dd></div>
+              <div><dt>Ask</dt><dd>Only legal targets and cards.</dd></div>
+              <div><dt>Claim</dt><dd>Lay down, or assign each card.</dd></div>
+              <div><dt>Sets bar</dt><dd>Public score piles — who won each set, and forfeits.</dd></div>
+              <div><dt>Last ask</dt><dd>A memory aid — not the whole memory.</dd></div>
+              <div><dt>Hand</dt><dd>Grouped by set.</dd></div>
+              <div><dt>Practice</dt><dd>Pick a character. Five bots.</dd></div>
+              <div><dt>Live</dt><dd>Host shares a link or code, sets teams → Start.</dd></div>
+              <div><dt>Replay</dt><dd>Open a <kbd>.lit</kbd> file. Every hand, every move.</dd></div>
+            </dl>
+            <p style="margin-top: 1.1rem"><a class="play" href="./">Back to the game →</a></p>
+          </section>
+        </div>
+      </div>
+    </div>
+
+    <footer>
+      <p>
+        Classic 48-card, 6-player rules as at
+        <a href="https://www.pagat.com/quartet/literature.html" target="_blank" rel="noopener noreferrer">pagat.com</a>
+        and
+        <a href="https://en.wikipedia.org/wiki/Literature_(card_game)" target="_blank" rel="noopener noreferrer">Wikipedia</a>.
+        Ask opponents only. A claimed set leaves play.
+      </p>
+      <p><a href="#top" onclick="window.scrollTo({top:0,behavior:'smooth'}); return false;">Back to top →</a></p>
+    </footer>
+  </body>
+</html>
